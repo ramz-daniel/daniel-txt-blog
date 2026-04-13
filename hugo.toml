@@ -43,6 +43,10 @@ enableTwitterCards = true
 title = "Daniel Blog" # will set 'og:site_name'
 description = "My HomePage Description"  # will set 'og:description'
 
+[params.author]
+  name = "Daniel Ramirez"
+  email = "danielrm01@outlook.com"
+
 [params.gitalk]
   owner = "user"
   repo = "repo name"
