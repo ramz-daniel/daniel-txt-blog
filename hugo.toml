@@ -73,6 +73,9 @@ theme="github-light"
     data_lang="en"
     crossorigin="anonymous"
 
+[caches]
+  [caches.images]
+    dir = ':cacheDir/images'
 
 [[menu.main]]
 url = "/categories"
