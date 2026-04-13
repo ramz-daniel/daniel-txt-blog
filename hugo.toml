@@ -7,6 +7,8 @@ theme = "diary"
 
 [outputs]
   home = ["HTML", "RSS"]
+  page = ["HTML"]
+  section = ["HTML", "RSS"]
 
 # Generate sitemap in the public folder
 [sitemap]
