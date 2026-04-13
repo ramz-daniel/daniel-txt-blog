@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Daniel Blog</title>
+    <link>http://localhost:1313/daniel-txt.github.io/posts/</link>
+    <description>Recent content in Posts on Daniel Blog</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <copyright>This is a customized copyright.</copyright>
+    <lastBuildDate>Sun, 01 Feb 2026 19:57:41 -0700</lastBuildDate>
+    <atom:link href="http://localhost:1313/daniel-txt.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Las mallas son complejos simpliciales</title>
+      <link>http://localhost:1313/daniel-txt.github.io/posts/simpliciales/</link>
+      <pubDate>Sun, 01 Feb 2026 19:57:41 -0700</pubDate>
+      <guid>http://localhost:1313/daniel-txt.github.io/posts/simpliciales/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Matrices y Forward de una Red</title>
+      <link>http://localhost:1313/daniel-txt.github.io/posts/my-first-post/</link>
+      <pubDate>Sun, 01 Feb 2026 19:57:41 -0700</pubDate>
+      <guid>http://localhost:1313/daniel-txt.github.io/posts/my-first-post/</guid>
+      <description>&lt;h2 id=&#34;qué-es&#34;&gt;¿Qué es?&lt;/h2&gt;&#xA;&lt;p&gt;Una matriz es un arreglo rectangular de números -reales o complejos- donde llamamos &lt;em&gt;renglón&lt;/em&gt; a cada fila horizontal de números y &lt;em&gt;columna&lt;/em&gt; a cada fila vertical; y los enumeramos de arriba a abajo, y de izquierda a derecha, respectivamente. Por ejemplo, en la matriz $A$&#xA;$$&#xA;A=\begin{pmatrix}&#xA;1 &amp;amp; 2 &amp;amp; 3 \\&#xA;4 &amp;amp; 5 &amp;amp; 6&#xA;\end{pmatrix},&#xA;$$&#xA;los renglones, escritos en orden, son los vectores&#xA;$$&#xA;\begin{pmatrix}&#xA;1 &amp;amp; 2 &amp;amp; 3&#xA;\end{pmatrix}\quad&#xA;\begin{pmatrix}&#xA;4 &amp;amp; 5 &amp;amp; 6&#xA;\end{pmatrix}&#xA;$$&#xA;y las columnas, también en orden, son&#xA;$$&#xA;\begin{pmatrix}&#xA;1 \\&#xA;4&#xA;\end{pmatrix}&#xA;\quad&#xA;\begin{pmatrix}&#xA;2 \\&#xA;5&#xA;\end{pmatrix}&#xA;\quad&#xA;\begin{pmatrix}&#xA;3 \\&#xA;6&#xA;\end{pmatrix}&#xA;$$&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

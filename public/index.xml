@@ -1,0 +1,197 @@
+<?xml-stylesheet href="/rss.xsl" type="text/xsl"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Daniel Blog</title>
+    <link>http://localhost:1313/daniel-txt.github.io/</link>
+    <description>Recent content on Daniel Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>This is a customized copyright.</copyright>
+    <lastBuildDate>Sun, 01 Feb 2026 19:57:41 -0700</lastBuildDate>
+    
+        <atom:link href="http://localhost:1313/daniel-txt.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+        <item>
+        <title>Las mallas son complejos simpliciales</title>
+        <link>http://localhost:1313/daniel-txt.github.io/posts/simpliciales/</link>
+        <pubDate>Sun, 01 Feb 2026 19:57:41 -0700</pubDate>
+        
+        <guid>http://localhost:1313/daniel-txt.github.io/posts/simpliciales/</guid>
+        <description>Daniel Blog http://localhost:1313/daniel-txt.github.io/posts/simpliciales/ -- http://localhost:1313/daniel-txt.github.io/posts/simpliciales/ - This is a customized copyright.</description>
+        </item>
+    
+    
+    
+        <item>
+        <title>Matrices y Forward de una Red</title>
+        <link>http://localhost:1313/daniel-txt.github.io/posts/my-first-post/</link>
+        <pubDate>Sun, 01 Feb 2026 19:57:41 -0700</pubDate>
+        
+        <guid>http://localhost:1313/daniel-txt.github.io/posts/my-first-post/</guid>
+        <description>Daniel Blog http://localhost:1313/daniel-txt.github.io/posts/my-first-post/ -&lt;h2 id=&#34;qué-es&#34;&gt;¿Qué es?&lt;/h2&gt;
+&lt;p&gt;Una matriz es un arreglo rectangular de números -reales o complejos- donde llamamos &lt;em&gt;renglón&lt;/em&gt; a cada fila horizontal de números y &lt;em&gt;columna&lt;/em&gt; a cada fila vertical; y los enumeramos de arriba a abajo, y de izquierda a derecha, respectivamente. Por ejemplo, en la matriz $A$
+$$
+A=\begin{pmatrix}
+1 &amp;amp; 2 &amp;amp; 3 \\
+4 &amp;amp; 5 &amp;amp; 6
+\end{pmatrix},
+$$
+los renglones, escritos en orden, son los vectores
+$$
+\begin{pmatrix}
+1 &amp;amp; 2 &amp;amp; 3
+\end{pmatrix}\quad
+\begin{pmatrix}
+4 &amp;amp; 5 &amp;amp; 6
+\end{pmatrix}
+$$
+y las columnas, también en orden, son
+$$
+\begin{pmatrix}
+1 \\
+4
+\end{pmatrix}
+\quad
+\begin{pmatrix}
+2 \\
+5
+\end{pmatrix}
+\quad
+\begin{pmatrix}
+3 \\
+6
+\end{pmatrix}
+$$&lt;/p&gt;
+&lt;h2 id=&#34;posición-dentro-de-la-matriz&#34;&gt;Posición dentro de la matriz.&lt;/h2&gt;
+&lt;p&gt;En la matriz, cada número individual podemos identificarlo con la posición que ocupa. Escribimos $a_{ij}$ para referimos al elemento de la matriz $A$ que se encuentra en la intersección de el renglón $i$ y la columna $j$. Por ejemplo, en la matriz anterior, $a_{21}=4$, porque es el elemento que se encuentra en la intersección entre el segundo renglón y la primera columna
+$$
+A=\begin{pmatrix}
+\textcolor{red}1 &amp;amp; 2 &amp;amp; 3 \\
+\textcolor{red}4 &amp;amp; \textcolor{red}5 &amp;amp; \textcolor{red}6
+\end{pmatrix}.
+$$&lt;/p&gt;
+&lt;h2 id=&#34;multiplicación-de-matrices&#34;&gt;Multiplicación de matrices&lt;/h2&gt;
+&lt;p&gt;La multiplicación de matrices se efectúa multplicando &lt;em&gt;renglón&lt;/em&gt; $\times$ &lt;em&gt;columna&lt;/em&gt;, es decir, para obtener la entrada $r_{ij}$ del resultado debemos hacer un producto entre el renglón $i$ de la primera matriz y la columna $j$ de la segunda.
+Por ejemplo, para multiplicar
+$$
+B \cdot C = \begin{pmatrix}
+2 &amp;amp; 1 \\ 3&amp;amp;2
+\end{pmatrix}
+\cdot
+\begin{pmatrix}
+2 &amp;amp; 1 \\ 4&amp;amp;3
+\end{pmatrix}
+$$
+obtendremos el elemento que corresponde a la posición renglón-$1$ columna-$1$ de la matriz resultado multiplicando el renglón $1$ de $B$ por la columna $1$ de $C$&lt;/p&gt;
+&lt;p&gt;$$
+\begin{pmatrix}
+2&amp;amp;2
+\end{pmatrix}
+\cdot
+\begin{pmatrix}
+2\\4
+\end{pmatrix}
+= 2 \cdot 2 + 1 \cdot 4 =8
+$$
+$$
+\implies B \cdot C =
+\begin{pmatrix}
+8&amp;amp; \\
+&amp;amp;
+\end{pmatrix}
+$$
+obtendremos el elemento que corresponde a la posición renglón-$2$ columna-$1$ multiplicando el renglón $2$ de la matriz $B$ por la columna $1$ de $C$&lt;/p&gt;
+&lt;p&gt;$$
+\begin{pmatrix}
+3 &amp;amp; 2
+\end{pmatrix}
+\cdot
+\begin{pmatrix}
+2 \\
+4
+\end{pmatrix}
+= 3 \cdot 2 + 2 \cdot 4 = 14
+$$
+$$
+\implies B \cdot C =
+\begin{pmatrix}
+8 &amp;amp; 14 \\ &amp;amp;
+\end{pmatrix}
+$$
+Y así sucesivamente hasta tener el resultado
+$$
+B \cdot C =
+\begin{pmatrix}
+8 &amp;amp; 14 \\ 5 &amp;amp; 9
+\end{pmatrix}
+$$&lt;/p&gt;
+&lt;h2 id=&#34;porqué-se-usa-en-una-red-neuronal&#34;&gt;¿Porqué se usa en una Red Neuronal?&lt;/h2&gt;
+&lt;p&gt;La forma más sencilla de una red neuronal se llama &lt;em&gt;Perceptrón&lt;/em&gt;. Este consiste de una serie de entradas que se conectan a una única neurona, y donde cada una de las aristas que conectan las entradas con la neurona posee un &lt;em&gt;Peso&lt;/em&gt;.
+La razón para usar la multiplicación de matrices es que la forma en que los pesos se combinan con las entradas para producir un resultado en la neurona es similar a la combinación renglón-columna de la multiplicación de matrices.  La $Salida$ del perceptrón se calcula multiplicando cada entrada por la respectiva arista que conecta con la neurona y, al final, sumar los resultados
+$$
+\alpha = x\cdot a+ y\cdot b+ z\cdot c
+$$
+Esto puede representarse en forma matricial como
+$$
+\alpha = \begin{pmatrix}
+x &amp;amp; y &amp;amp; z
+\end{pmatrix} \cdot
+\begin{pmatrix}
+a \\
+b \\
+c
+\end{pmatrix}
+$$
+Para una red neuronal levemente más compleja, con $2$ neuronas, el procedimiento se ve así
+$$
+\begin{cases}
+\alpha = x\cdot a + y\cdot b + z \cdot c \\
+\beta = x\cdot d + y\cdot e + z\cdot f
+\end{cases}
+$$
+que en notación matricial corresponde a la multiplicación
+$$
+\begin{pmatrix}
+\alpha &amp;amp; \beta
+\end{pmatrix}
+=\begin{pmatrix}
+x &amp;amp; y &amp;amp; z
+\end{pmatrix}
+\cdot
+\begin{pmatrix}
+a &amp;amp; d \\
+b &amp;amp; e \\
+c &amp;amp; f
+\end{pmatrix}
+$$&lt;/p&gt;
+&lt;h2 id=&#34;cómo-se-implementa-el-feed-forward-de-una-red-neuronal&#34;&gt;¿Cómo se implementa el Feed Forward de una Red Neuronal?&lt;/h2&gt;
+&lt;p&gt;El Feed Forward de una red neuronal es una repetición secuencial del principio anterior: Si tenemos una red con $n$ cantidad de capas entonces empezaremos con las entradas, efectuando la multimplicación matricial, y al obtener el resultado este pasará a ser la entrada para la siguiente capa de la red, y se repetirá este proceso hasta terminar todas las capas y obtener la salida de la red completa.&lt;/p&gt;
+&lt;p&gt;El siguiente código en Python corresponde a la clase de una única capa que ejecuta la transformación matricial de la que hablamos antes:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;import&lt;/span&gt; &lt;span style=&#34;color:#008b45;text-decoration:underline&#34;&gt;torch&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;import&lt;/span&gt; &lt;span style=&#34;color:#008b45;text-decoration:underline&#34;&gt;torch.nn&lt;/span&gt; &lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;as&lt;/span&gt; &lt;span style=&#34;color:#008b45;text-decoration:underline&#34;&gt;nn&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;import&lt;/span&gt; &lt;span style=&#34;color:#008b45;text-decoration:underline&#34;&gt;torch.nn.functional&lt;/span&gt; &lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;as&lt;/span&gt; &lt;span style=&#34;color:#008b45;text-decoration:underline&#34;&gt;F&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#008b45;font-weight:bold&#34;&gt;CustomLinearLayer&lt;/span&gt;(nn.Module):
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#008b45&#34;&gt;__init__&lt;/span&gt;(&lt;span style=&#34;color:#658b00&#34;&gt;self&lt;/span&gt;, in_features, out_features):
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#658b00&#34;&gt;super&lt;/span&gt;().&lt;span style=&#34;color:#008b45&#34;&gt;__init__&lt;/span&gt;() 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#658b00&#34;&gt;self&lt;/span&gt;.weight = nn.Parameter(torch.randn(out_features, in_features)) 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#008b45&#34;&gt;forward&lt;/span&gt;(&lt;span style=&#34;color:#658b00&#34;&gt;self&lt;/span&gt;, x):
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;return&lt;/span&gt; F.linear(x, &lt;span style=&#34;color:#658b00&#34;&gt;self&lt;/span&gt;.weight) 
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Veamos qué hace cada parte de este código. Primero,&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#008b45&#34;&gt;__init__&lt;/span&gt;(&lt;span style=&#34;color:#658b00&#34;&gt;self&lt;/span&gt;, in_features, out_features):
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   &lt;span style=&#34;color:#658b00&#34;&gt;super&lt;/span&gt;().&lt;span style=&#34;color:#008b45&#34;&gt;__init__&lt;/span&gt;() 
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;inicializa la clase, heredandole atributos de la clase $nn.Module$. Después se asignan aleatoriamente los pesos de las aristas:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#658b00&#34;&gt;self&lt;/span&gt;.weight = nn.Parameter(torch.randn(out_features, in_features)) 
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Y finalmente, se llama al método $F.linear$ de Pytorch para calcular las salidas de la capa:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#008b45&#34;&gt;forward&lt;/span&gt;(&lt;span style=&#34;color:#658b00&#34;&gt;self&lt;/span&gt;, x):
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#8b008b;font-weight:bold&#34;&gt;return&lt;/span&gt; F.linear(x, &lt;span style=&#34;color:#658b00&#34;&gt;self&lt;/span&gt;.weight) 
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Este método realiza &lt;em&gt;transformaciones afines&lt;/em&gt;, que son precisamente las de forma $y=xA^T + b$.&lt;/p&gt;
+- http://localhost:1313/daniel-txt.github.io/posts/my-first-post/ - This is a customized copyright.</description>
+        </item>
+    
+    
+  </channel>
+</rss> 

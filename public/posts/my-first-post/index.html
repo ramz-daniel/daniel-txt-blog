@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en"><head><script src="/daniel-txt.github.io/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=daniel-txt.github.io/livereload" data-no-instant defer></script>
+<title>Matrices y Forward de una Red</title>
+
+
+
+
+<meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="G-XXXXXXXXXX">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=5, user-scalable=5" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<meta name="description" content="">
+<meta name="renderer" content="webkit">
+<meta name="theme-color" content="#ffffff">
+
+
+
+<meta property="og:url" content="http://localhost:1313/daniel-txt.github.io/posts/my-first-post/">
+  <meta property="og:site_name" content="Daniel Blog">
+  <meta property="og:title" content="Matrices y Forward de una Red">
+  <meta property="og:description" content="¿Qué es? Una matriz es un arreglo rectangular de números -reales o complejos- donde llamamos renglón a cada fila horizontal de números y columna a cada fila vertical; y los enumeramos de arriba a abajo, y de izquierda a derecha, respectivamente. Por ejemplo, en la matriz $A$ $$ A=\begin{pmatrix} 1 &amp; 2 &amp; 3 \\ 4 &amp; 5 &amp; 6 \end{pmatrix}, $$ los renglones, escritos en orden, son los vectores $$ \begin{pmatrix} 1 &amp; 2 &amp; 3 \end{pmatrix}\quad \begin{pmatrix} 4 &amp; 5 &amp; 6 \end{pmatrix} $$ y las columnas, también en orden, son $$ \begin{pmatrix} 1 \\ 4 \end{pmatrix} \quad \begin{pmatrix} 2 \\ 5 \end{pmatrix} \quad \begin{pmatrix} 3 \\ 6 \end{pmatrix} $$">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-02-01T19:57:41-07:00">
+    <meta property="article:modified_time" content="2026-02-01T19:57:41-07:00">
+
+
+
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Matrices y Forward de una Red">
+  <meta name="twitter:description" content="¿Qué es? Una matriz es un arreglo rectangular de números -reales o complejos- donde llamamos renglón a cada fila horizontal de números y columna a cada fila vertical; y los enumeramos de arriba a abajo, y de izquierda a derecha, respectivamente. Por ejemplo, en la matriz $A$ $$ A=\begin{pmatrix} 1 &amp; 2 &amp; 3 \\ 4 &amp; 5 &amp; 6 \end{pmatrix}, $$ los renglones, escritos en orden, son los vectores $$ \begin{pmatrix} 1 &amp; 2 &amp; 3 \end{pmatrix}\quad \begin{pmatrix} 4 &amp; 5 &amp; 6 \end{pmatrix} $$ y las columnas, también en orden, son $$ \begin{pmatrix} 1 \\ 4 \end{pmatrix} \quad \begin{pmatrix} 2 \\ 5 \end{pmatrix} \quad \begin{pmatrix} 3 \\ 6 \end{pmatrix} $$">
+
+
+
+
+
+
+
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+      <script>
+        var doNotTrack = false;
+        if ( true ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-XXXXXXXXXX');
+        }
+      </script>
+
+
+
+
+<script type="text/javascript">
+  (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+  })(window, document, "clarity", "script", "abcdefghzd");
+</script>
+
+
+
+  
+
+
+
+
+
+
+      <script src="/daniel-txt.github.io/js/toc.js"></script>
+    
+    <link type="text/css" rel="stylesheet" href="/daniel-txt.github.io/vendor/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="/daniel-txt.github.io/scss/dark-mode.min.0c0577b983148c1978cab790ceaf3f30aafc103140c23757be7c9262d0fec642.css" integrity="sha256-DAV3uYMUjBl4yreQzq8/MKr8EDFAwjdXvnySYtD&#43;xkI=" media="screen">
+
+
+<link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Material+Icons">
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css" integrity="sha384-RZU/ijkSsFbcmivfdRBQDtwuwVqK7GMOw6IMvKyeWL2K5UAlyp6WonmB8m7Jd0Hn" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.js" integrity="sha384-pK1WpvzWVBQiP0/GjnvRxV4mOb0oxFuyRxJlk6vVw146n3egcN5C925NCP7a7BY8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/auto-render.min.js" integrity="sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          
+          
+          delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false},
+              {left: '\\(', right: '\\)', display: false},
+              {left: '\\[', right: '\\]', display: true}
+          ],
+          
+          throwOnError : false
+        });
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+    	<div id="app"><div class="single-column-drawer-container" id="drawer"
+     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
+    <div class="drawer-content">
+        <div class="drawer-menu">
+            
+            
+            
+                
+                
+                
+                    
+                
+                
+                
+                <a class="a-block drawer-menu-item active" href="/daniel-txt.github.io/posts">
+                    Archive
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/daniel-txt.github.io/categories">
+                    Categories
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/daniel-txt.github.io/tags">
+                    Tags
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/daniel-txt.github.io/index.xml">
+                    RSS Feed
+                </a>
+                
+            
+            
+            <div class="toc">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#qu%c3%a9-es" class="nav-qué-es">
+									¿Qué es?
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#posici%c3%b3n-dentro-de-la-matriz" class="nav-posición-dentro-de-la-matriz">
+									Posición dentro de la matriz.
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#multiplicaci%c3%b3n-de-matrices" class="nav-multiplicación-de-matrices">
+									Multiplicación de matrices
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#porqu%c3%a9-se-usa-en-una-red-neuronal" class="nav-porqué-se-usa-en-una-red-neuronal">
+									¿Porqué se usa en una Red Neuronal?
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#c%c3%b3mo-se-implementa-el-feed-forward-de-una-red-neuronal" class="nav-cómo-se-implementa-el-feed-forward-de-una-red-neuronal">
+									¿Cómo se implementa el Feed Forward de una Red Neuronal?
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
+</div>
+            
+        </div>
+    </div>
+</div>
+<transition name="fade">
+    <div id="drawer-mask" v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
+</transition>
+<nav id="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
+    <div id="navBackground" class="nav-background"></div>
+    <div class="container container-narrow nav-content">
+        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
+            <i class="material-icons">
+                menu
+            </i>
+        </button>
+        <a id="navTitle" class="navbar-brand" href="http://localhost:1313/daniel-txt.github.io/">
+            Daniel Blog
+        </a>
+        
+        <button type="button" class="nav-darkmode-toggle" id="darkModeToggleButton2">
+            <i class="material-icons" id="darkModeToggleIcon2">
+                dark_mode
+            </i>
+        </button>
+        
+    </div>
+</nav>
+<div class="single-column-header-container" id="pageHead"
+     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
+    <a href="http://localhost:1313/daniel-txt.github.io/">
+        <div class="single-column-header-title">Daniel Blog</div>
+        
+        <div class="single-column-header-subtitle">Themed by Diary.</div>
+        
+
+    </a>
+</div>
+
+            <div id="content">
+                <div id="streamContainer" class="stream-container">
+
+    <div class="post-list-container post-list-container-shadow">
+        <div class="post">
+            
+            
+            
+
+            <div class="post-head-wrapper-text-only"
+                
+            >
+                <div class="post-title">
+                    Matrices y Forward de una Red
+                    
+                    <div class="post-meta">
+                        
+                        <time itemprop="datePublished">
+                            2026-02-01 19:57
+                        </time>
+                        
+
+                        
+
+                        
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-body-wrapper">
+                
+                <div class="post-body" v-pre>
+                
+                    <h2 id="qué-es">¿Qué es?</h2>
+<p>Una matriz es un arreglo rectangular de números -reales o complejos- donde llamamos <em>renglón</em> a cada fila horizontal de números y <em>columna</em> a cada fila vertical; y los enumeramos de arriba a abajo, y de izquierda a derecha, respectivamente. Por ejemplo, en la matriz $A$
+$$
+A=\begin{pmatrix}
+1 &amp; 2 &amp; 3 \\
+4 &amp; 5 &amp; 6
+\end{pmatrix},
+$$
+los renglones, escritos en orden, son los vectores
+$$
+\begin{pmatrix}
+1 &amp; 2 &amp; 3
+\end{pmatrix}\quad
+\begin{pmatrix}
+4 &amp; 5 &amp; 6
+\end{pmatrix}
+$$
+y las columnas, también en orden, son
+$$
+\begin{pmatrix}
+1 \\
+4
+\end{pmatrix}
+\quad
+\begin{pmatrix}
+2 \\
+5
+\end{pmatrix}
+\quad
+\begin{pmatrix}
+3 \\
+6
+\end{pmatrix}
+$$</p>
+<h2 id="posición-dentro-de-la-matriz">Posición dentro de la matriz.</h2>
+<p>En la matriz, cada número individual podemos identificarlo con la posición que ocupa. Escribimos $a_{ij}$ para referimos al elemento de la matriz $A$ que se encuentra en la intersección de el renglón $i$ y la columna $j$. Por ejemplo, en la matriz anterior, $a_{21}=4$, porque es el elemento que se encuentra en la intersección entre el segundo renglón y la primera columna
+$$
+A=\begin{pmatrix}
+\textcolor{red}1 &amp; 2 &amp; 3 \\
+\textcolor{red}4 &amp; \textcolor{red}5 &amp; \textcolor{red}6
+\end{pmatrix}.
+$$</p>
+<h2 id="multiplicación-de-matrices">Multiplicación de matrices</h2>
+<p>La multiplicación de matrices se efectúa multplicando <em>renglón</em> $\times$ <em>columna</em>, es decir, para obtener la entrada $r_{ij}$ del resultado debemos hacer un producto entre el renglón $i$ de la primera matriz y la columna $j$ de la segunda.
+Por ejemplo, para multiplicar
+$$
+B \cdot C = \begin{pmatrix}
+2 &amp; 1 \\ 3&amp;2
+\end{pmatrix}
+\cdot
+\begin{pmatrix}
+2 &amp; 1 \\ 4&amp;3
+\end{pmatrix}
+$$
+obtendremos el elemento que corresponde a la posición renglón-$1$ columna-$1$ de la matriz resultado multiplicando el renglón $1$ de $B$ por la columna $1$ de $C$</p>
+<p>$$
+\begin{pmatrix}
+2&amp;2
+\end{pmatrix}
+\cdot
+\begin{pmatrix}
+2\\4
+\end{pmatrix}
+= 2 \cdot 2 + 1 \cdot 4 =8
+$$
+$$
+\implies B \cdot C =
+\begin{pmatrix}
+8&amp; \\
+&amp;
+\end{pmatrix}
+$$
+obtendremos el elemento que corresponde a la posición renglón-$2$ columna-$1$ multiplicando el renglón $2$ de la matriz $B$ por la columna $1$ de $C$</p>
+<p>$$
+\begin{pmatrix}
+3 &amp; 2
+\end{pmatrix}
+\cdot
+\begin{pmatrix}
+2 \\
+4
+\end{pmatrix}
+= 3 \cdot 2 + 2 \cdot 4 = 14
+$$
+$$
+\implies B \cdot C =
+\begin{pmatrix}
+8 &amp; 14 \\ &amp;
+\end{pmatrix}
+$$
+Y así sucesivamente hasta tener el resultado
+$$
+B \cdot C =
+\begin{pmatrix}
+8 &amp; 14 \\ 5 &amp; 9
+\end{pmatrix}
+$$</p>
+<h2 id="porqué-se-usa-en-una-red-neuronal">¿Porqué se usa en una Red Neuronal?</h2>
+<p>La forma más sencilla de una red neuronal se llama <em>Perceptrón</em>. Este consiste de una serie de entradas que se conectan a una única neurona, y donde cada una de las aristas que conectan las entradas con la neurona posee un <em>Peso</em>.
+La razón para usar la multiplicación de matrices es que la forma en que los pesos se combinan con las entradas para producir un resultado en la neurona es similar a la combinación renglón-columna de la multiplicación de matrices.  La $Salida$ del perceptrón se calcula multiplicando cada entrada por la respectiva arista que conecta con la neurona y, al final, sumar los resultados
+$$
+\alpha = x\cdot a+ y\cdot b+ z\cdot c
+$$
+Esto puede representarse en forma matricial como
+$$
+\alpha = \begin{pmatrix}
+x &amp; y &amp; z
+\end{pmatrix} \cdot
+\begin{pmatrix}
+a \\
+b \\
+c
+\end{pmatrix}
+$$
+Para una red neuronal levemente más compleja, con $2$ neuronas, el procedimiento se ve así
+$$
+\begin{cases}
+\alpha = x\cdot a + y\cdot b + z \cdot c \\
+\beta = x\cdot d + y\cdot e + z\cdot f
+\end{cases}
+$$
+que en notación matricial corresponde a la multiplicación
+$$
+\begin{pmatrix}
+\alpha &amp; \beta
+\end{pmatrix}
+=\begin{pmatrix}
+x &amp; y &amp; z
+\end{pmatrix}
+\cdot
+\begin{pmatrix}
+a &amp; d \\
+b &amp; e \\
+c &amp; f
+\end{pmatrix}
+$$</p>
+<h2 id="cómo-se-implementa-el-feed-forward-de-una-red-neuronal">¿Cómo se implementa el Feed Forward de una Red Neuronal?</h2>
+<p>El Feed Forward de una red neuronal es una repetición secuencial del principio anterior: Si tenemos una red con $n$ cantidad de capas entonces empezaremos con las entradas, efectuando la multimplicación matricial, y al obtener el resultado este pasará a ser la entrada para la siguiente capa de la red, y se repetirá este proceso hasta terminar todas las capas y obtener la salida de la red completa.</p>
+<p>El siguiente código en Python corresponde a la clase de una única capa que ejecuta la transformación matricial de la que hablamos antes:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#8b008b;font-weight:bold">import</span> <span style="color:#008b45;text-decoration:underline">torch</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b008b;font-weight:bold">import</span> <span style="color:#008b45;text-decoration:underline">torch.nn</span> <span style="color:#8b008b;font-weight:bold">as</span> <span style="color:#008b45;text-decoration:underline">nn</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b008b;font-weight:bold">import</span> <span style="color:#008b45;text-decoration:underline">torch.nn.functional</span> <span style="color:#8b008b;font-weight:bold">as</span> <span style="color:#008b45;text-decoration:underline">F</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8b008b;font-weight:bold">class</span> <span style="color:#008b45;font-weight:bold">CustomLinearLayer</span>(nn.Module):
+</span></span><span style="display:flex;"><span>    <span style="color:#8b008b;font-weight:bold">def</span> <span style="color:#008b45">__init__</span>(<span style="color:#658b00">self</span>, in_features, out_features):
+</span></span><span style="display:flex;"><span>        <span style="color:#658b00">super</span>().<span style="color:#008b45">__init__</span>() 
+</span></span><span style="display:flex;"><span>        <span style="color:#658b00">self</span>.weight = nn.Parameter(torch.randn(out_features, in_features)) 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8b008b;font-weight:bold">def</span> <span style="color:#008b45">forward</span>(<span style="color:#658b00">self</span>, x):
+</span></span><span style="display:flex;"><span>        <span style="color:#8b008b;font-weight:bold">return</span> F.linear(x, <span style="color:#658b00">self</span>.weight) 
+</span></span></code></pre></div><p>Veamos qué hace cada parte de este código. Primero,</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#8b008b;font-weight:bold">def</span> <span style="color:#008b45">__init__</span>(<span style="color:#658b00">self</span>, in_features, out_features):
+</span></span><span style="display:flex;"><span>   <span style="color:#658b00">super</span>().<span style="color:#008b45">__init__</span>() 
+</span></span></code></pre></div><p>inicializa la clase, heredandole atributos de la clase $nn.Module$. Después se asignan aleatoriamente los pesos de las aristas:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#658b00">self</span>.weight = nn.Parameter(torch.randn(out_features, in_features)) 
+</span></span></code></pre></div><p>Y finalmente, se llama al método $F.linear$ de Pytorch para calcular las salidas de la capa:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#eed;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#8b008b;font-weight:bold">def</span> <span style="color:#008b45">forward</span>(<span style="color:#658b00">self</span>, x):
+</span></span><span style="display:flex;"><span>    <span style="color:#8b008b;font-weight:bold">return</span> F.linear(x, <span style="color:#658b00">self</span>.weight) 
+</span></span></code></pre></div><p>Este método realiza <em>transformaciones afines</em>, que son precisamente las de forma $y=xA^T + b$.</p>
+
+                    
+                    <HR width="100%" id="EOF">
+		    <p style="color:#777;">Last modified on 2026-02-01</p>
+                    
+                </div>
+            </div>
+            
+            
+            <nav class="post-pagination">
+
+                
+                <a class="newer-posts" href="/daniel-txt.github.io/posts/simpliciales/">
+			Next<br>Las mallas son complejos simpliciales
+                </a>
+                
+                
+                
+                <a class="older-posts">
+			Previous<br>No older posts.
+                </a>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="https://giscus.app/client.js"
+        data-repo="username/repo"
+        data-repo-id="**************************"
+        data-category="General"
+        data-category-id="*********************"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="preferred_color_scheme"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
+
+            </div>
+        </div>
+    </div>
+
+
+                    </div>
+            </div><div id="sideContainer" class="side-container">
+    
+    <a class="a-block nav-head false" href="http://localhost:1313/daniel-txt.github.io/">
+    
+        <div class="nav-title">
+            Daniel Blog
+        </div>
+        
+        <div class="nav-subtitle">
+            Themed by Diary.
+        </div>
+        
+    </a>
+
+    <div class="nav-link-list">
+        
+        
+            
+            
+            
+                
+            
+            
+            
+            <a class="a-block nav-link-item active" href="/daniel-txt.github.io/posts">
+                Archive
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/daniel-txt.github.io/categories">
+                Categories
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/daniel-txt.github.io/tags">
+                Tags
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/daniel-txt.github.io/index.xml">
+                RSS Feed
+            </a>
+            
+        
+    </div>
+
+    
+
+    <div class="nav-footer">
+        
+Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> by <a href="https://risehere.net/">Rise</a>
+<br>
+Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopener">Makito</a>'s <a href="https://github.com/SumiMakito/hexo-theme-journal/" target="_blank" rel="noreferrer noopener">Journal.</a> <br>
+<br>
+
+&copy;
+	
+	This is a customized copyright.
+	
+
+    </div>
+    
+</div><div id="extraContainer" class="extra-container">
+    <div class="toc-wrapper">
+        
+
+        
+        <div class="toc">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#qu%c3%a9-es" class="nav-qué-es">
+									¿Qué es?
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#posici%c3%b3n-dentro-de-la-matriz" class="nav-posición-dentro-de-la-matriz">
+									Posición dentro de la matriz.
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#multiplicaci%c3%b3n-de-matrices" class="nav-multiplicación-de-matrices">
+									Multiplicación de matrices
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#porqu%c3%a9-se-usa-en-una-red-neuronal" class="nav-porqué-se-usa-en-una-red-neuronal">
+									¿Porqué se usa en una Red Neuronal?
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#c%c3%b3mo-se-implementa-el-feed-forward-de-una-red-neuronal" class="nav-cómo-se-implementa-el-feed-forward-de-una-red-neuronal">
+									¿Cómo se implementa el Feed Forward de una Red Neuronal?
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
+</div>
+        
+    </div>
+    <div class="pagination">
+        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top"
+            :class="{ invisible: scrollY == 0 }">
+            <i class="material-icons pagination-action-icon">
+                keyboard_arrow_up
+            </i>
+        </a>
+        
+        <a type="button" class="pagination-action" id="darkModeToggleButton">
+            <span class="material-icons pagination-action-icon" id="darkModeToggleIcon">
+                dark_mode
+            </span>
+        </a>
+        
+        
+    </div>
+</div>
+
+<div id="single-column-footer">
+Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> by <a href="https://risehere.net/">Rise</a>
+<br>
+Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopener">Makito</a>'s <a href="https://github.com/SumiMakito/hexo-theme-journal/" target="_blank" rel="noreferrer noopener">Journal.</a> <br>
+<br>
+
+&copy;
+	
+	This is a customized copyright.
+	
+</div>
+            </div>
+    
+    <script src="/daniel-txt.github.io/js/journal.js"></script></body>
+</html>
