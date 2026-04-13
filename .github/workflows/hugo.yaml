@@ -77,6 +77,10 @@ jobs:
           key: hugo-${{ github.run_id }}
           restore-keys:
             hugo-
+      - name: Fix diary theme RSS template
+        run: |
+          sed -i 's/\.Site\.Author\.email/.Site.Params.author.email/g' themes/diary/layouts/index.rss.xml
+          sed -i 's/\.Site\.Author\.name/.Site.Params.author.name/g' themes/diary/layouts/index.rss.xml
       - name: Build the site
         run: |
           hugo build \
