@@ -5,6 +5,9 @@ title = "Daniel Blog"
 copyright = "This is a customized copyright."
 theme = "diary"
 
+[outputs]
+  home = ["HTML", "RSS"]
+
 # Generate sitemap in the public folder
 [sitemap]
   changefreq = "always"
