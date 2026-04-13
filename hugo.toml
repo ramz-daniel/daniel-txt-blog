@@ -1,4 +1,4 @@
-baseURL = "https://ramz-daniel.github.io/daniel-txt.github.io/"
+baseURL = "https://ramz-daniel.github.io/daniel-txt-blog/"
 DefaultContentLanguage = "en" # Theme's display language, supports: en, fr, zh, zh-hant
 languageCode = "en-us"
 title = "Daniel Blog"
